@@ -1,0 +1,10 @@
+# Logs
+logs/
+*.log
+
+# Python
+__pycache__/
+*.pyc
+
+# Local / runtime files
+.env
