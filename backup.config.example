@@ -1,0 +1,77 @@
+# ================================
+# Backup Runner Example Config
+# ================================
+# Version: 0.1.0
+# Host: CrossHair
+#
+# This file defines one or more backup jobs.
+# Each job is fully self‑contained and can be run individually
+# or together using --all.
+#
+# All paths may be absolute or relative.
+# Secrets MUST be stored in environment variables.
+
+[global]
+# Timestamp format used for log filenames
+# Uses Python strftime syntax
+# Default: %Y-%m-%d_%H-%M-%S
+timestamp_format = %Y-%m-%d_%H-%M-%S
+
+# Default dry‑run behavior (can be overridden by CLI)
+dry_run = false
+
+
+[email]
+# Enable or disable email notifications globally
+enabled = false
+
+# Notification backend
+provider = pythonEmailNotify
+
+# Environment variables holding credentials
+creds_env_user = EMAIL_USER
+creds_env_pass = EMAIL_PASS
+
+# Email addressing
+from_addr = backups@example.com
+to_addrs = you@example.com, other@example.com
+
+
+[job:documents_backup]
+# Enable or disable this job
+enabled = true
+
+# Source and destination paths
+src = C:\Users\YourName\Documents
+dst = D:\Backups\Documents
+
+# Logging
+# If log_dir is omitted, logs default to <dst>/logs
+log_dir =
+log_prefix = documents_backup
+delete_logs_on_success = false
+
+# Cache
+# If omitted, cache defaults to <dst>/cache/<job>.sqlite
+cache_path =
+delete_cache_on_success = false
+
+# Merge behavior
+move = false
+ignore_symlinks = false
+exclude_globs = *.tmp, *.log
+
+# Timeout (minutes)
+# Leave blank or remove for no timeout
+timeout_minutes =
+
+# Notifications
+notify_on_success = false
+notify_on_any_error = true
+notify_on_error_count = 10
+notify_per_file_error = false
+notify_on_timeout_warning = true
+
+# ================================
+# End of example config
+# ================================

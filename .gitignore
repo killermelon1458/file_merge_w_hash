@@ -2,6 +2,10 @@
 logs/
 *.log
 
+# Local configs
+backup.config
+backup_*.config
+
 # Python
 __pycache__/
 *.pyc
